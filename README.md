@@ -1,4 +1,5 @@
-Social Fitness App
-Flask Web Server
-Firebase DB and Hosting
-Design Inspired by Harvard CS50 Finance Web Application
+# social fitness app
+- flask web server
+- bootstrap framework
+- firebase db and hosting
+- design inspired by harvard cs50 finance web application
