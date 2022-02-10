@@ -1,1 +1,5 @@
+# virtual environment
 .venv/
+
+# database
+fitness.db
