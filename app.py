@@ -1,10 +1,10 @@
-import os
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import *
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
+from firebase import firebase
 
 from helpers import apology, login_required
 
@@ -28,8 +28,12 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+# connecting firebase
+firebase = firebase.FirebaseApplication('https://social-fitness-86ac8-default-rtdb.firebaseio.com/', None)
+
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///fitness.db")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -117,7 +121,8 @@ def register():
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    user_id = firebase.get('/user_id', None)
+    return render_template("index.html", users = user_id)
 
 @app.route("/groups")
 @login_required

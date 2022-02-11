@@ -6,4 +6,7 @@
 
 {% block main %}
     Hello, Ashu
+    {% for user in users %}
+        {{users[user]["username"]}}
+    {% endfor %}
 {% endblock %}
